@@ -3,21 +3,37 @@ package com.calculator.base;
 //import com.calculator.cond.CheckCondition;
 
 public class Calculator implements Arithmetic{
-	private static final String errorMsg = "정확한 값을 입력하세요.";
 	
+	private static final String errorMsg = "정확한 값을 입력하세요.";
 	private static final String[] ari = {"+", "-", "*", "/"};
+	private static String[] strArr = new String[3]; // userInput을 split 해서 담을 array
 	
 	// Property 
 	private int n1, n2;
 	
+	
 	// Constructor
 	public Calculator(String userInput) {
 		// TODO Auto-generated constructor stub
-		String[] strArr = new String[3]; // userInput을 담을 array
-		
-		
 		strArr = userInput.split(" ");
+	} // Constructor
+	
+	// Method
+	@Override
+	public int add() {
+		// TODO Auto-generated method stub
 		
+		return n1 + n2;
+	}
+
+	@Override
+	public int sub() {
+		// TODO Auto-generated method stub
+		return n1 - n2;
+	}
+	
+	// 실제 계산하는 함
+	public void excute() {
 		try {
 			boolean isAri = false;
 			// split으로 나눈 것을 분리한다.
@@ -47,20 +63,6 @@ public class Calculator implements Arithmetic{
 			// TODO: handle exception
 			System.out.println(errorMsg);
 		} // try ~ catch
-	} // Constructor
-	
-	// Method
-	@Override
-	public int add() {
-		// TODO Auto-generated method stub
-		
-		return n1 + n2;
-	}
-
-	@Override
-	public int sub() {
-		// TODO Auto-generated method stub
-		return n1 - n2;
 	}
 	
 }

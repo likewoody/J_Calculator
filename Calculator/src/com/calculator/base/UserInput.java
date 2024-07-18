@@ -37,7 +37,7 @@ public class UserInput {
 				break;
 			}
 			Calculator calculator = new Calculator(userInput);
-			
+			calculator.excute();
 		} // while
 		
 	} // main
