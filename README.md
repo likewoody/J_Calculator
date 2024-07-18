@@ -1,2 +1,8 @@
 # J_Calculator
-자바 계산기 OOP
+java를 이용한 사칙연산 계산기 만들기
+<hr>
+<br>
+Language : Java
+
+
+
