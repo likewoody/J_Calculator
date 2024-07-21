@@ -1,68 +1,95 @@
 package com.calculator.base;
 
-//import com.calculator.cond.CheckCondition;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator implements Arithmetic{
 	
 	private static final String errorMsg = "정확한 값을 입력하세요.";
-	private static final String[] ari = {"+", "-", "*", "/"};
-	private static String[] strArr = new String[3]; // userInput을 split 해서 담을 array
+//	private static final String[] arithmetic = {"+", "-", "*", "/"};
+	private String[] userInput;
+	private List<String> arrangeUserInput = new ArrayList<String>();
+	private boolean isInt = false;
+	 
 	
-	// Property 
-	private int n1, n2;
 	
-	
-	// Constructor
 	public Calculator(String userInput) {
 		// TODO Auto-generated constructor stub
-		strArr = userInput.split(" ");
+		this.userInput = userInput.split("");
 	} // Constructor
+
+	public void execute() {
+		arrangeNumbers();
+		// *********8여기 까지 완료 ************
+		// Int parse이 되면은 정확한 데이터가 들어온 것이고/
+		// 여기서 이제 사칙연산 * / 먼저  그리고 + - 차례대로 실행시키면 된다.
+		if (isInt) {
+			for (String userInput : arrangeUserInput) {
+				System.out.println(userInput);
+			}
+		} else {
+			// TODO: handle exception
+			System.out.println(errorMsg);
+		}
+	}
 	
-	// Method
-	@Override
-	public int add() {
-		// TODO Auto-generated method stub
+	private void arrangeNumbers() {
+		String gatherNumbers = "";
+		try {
+			for(int i=0; i<userInput.length; i++) {
+				
+				if ("+".equals(userInput[i]) || "-".equals(userInput[i]) 
+						|| "*".equals(userInput[i]) || "/".equals(userInput[i])) {
+					
+					if (!gatherNumbers.isEmpty()) {
+						arrangeUserInput.add(gatherNumbers);
+						gatherNumbers = "";
+					}
+					arrangeUserInput.add(userInput[i]);
+				} else {
+					Integer.parseInt(userInput[i]);
+					gatherNumbers += userInput[i];
+				}
+			}
+			if (!gatherNumbers.isEmpty()) {
+				arrangeUserInput.add(gatherNumbers);
+			}
+			isInt = true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			isInt = false;
+		}
 		
-		return n1 + n2;
+	}
+	
+	@Override
+	public int add(int num1, int num2) {
+		// TODO Auto-generated method stub
+		return num1 + num2;
+//		return n1 + n2;
 	}
 
 	@Override
-	public int sub() {
+	public int sub(int num1, int num2) {
+		
 		// TODO Auto-generated method stub
-		return n1 - n2;
+//		return n1 - n2;
+		return num1 - num2;
 	}
 	
-	// 실제 계산하는 함
-	public void excute() {
-		try {
-			boolean isAri = false;
-			// split으로 나눈 것을 분리한다.
-			this.n1 = Integer.parseInt(strArr[0]);
-			this.n2 = Integer.parseInt(strArr[2]);
-			 	
-			// 음 확장성을 고려하면 이 방법이 좋은 방법은 아닌거 같은데 
-			for (int i=0;i<ari.length;i++) {
-				if (ari[i].contains(strArr[1])) {
-					isAri = true;
-					break;
-				}
-			}
-			// 사칙연산 +, -, *, /가 들어가 있지 않다면 errorMsg 출
-			if (isAri) {
-				if (ari[0].contains(strArr[1])) {
-					System.out.println("result : " + add());
-				}
-				if (ari[1].contains(strArr[1])) {
-					System.out.println("result : " + sub());	
-				}
-			}else {
-				System.out.println(errorMsg);
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(errorMsg);
-		} // try ~ catch
+	@Override
+	public int mul(int num1, int num2) {
+		// TODO Auto-generated method stub
+		return num1 * num2;
+//		return n1 + n2;
+	}
+
+	@Override
+	public double div(int num1, int num2) {
+		
+		// TODO Auto-generated method stub
+//		return n1 - n2;
+		return num1/num2;
 	}
 	
 }
