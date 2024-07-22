@@ -8,22 +8,12 @@ import java.util.Scanner;
  	Date : July 18, 2024 Thursday
  */
 
-
-/*
- * 구현
- * 1. input process class
- * 2. 유저의 input을 받아서 처리하는 class
- * 3. 어떤 연산인지 처리하는 interface
- */
-
-
-
 public class UserIO {
 	
-	// property
-	String userInput;
+	private String userInput;
+	private double result;
 	
-	// method
+	
 	public String userInput() {
 		Scanner sc = new Scanner(System.in);
 		
@@ -36,6 +26,20 @@ public class UserIO {
 	
 	public void userOutput() {
 		Calculator calculator = new Calculator(userInput);
-		calculator.execute();
+		result = calculator.calculator();
+		
+		
+		String[] strResult = String.format("%.2f", result).split("\\.");
+		
+		for (int i=0; i<strResult.length; i++) {
+			if (i==1) {
+				if (Integer.parseInt(strResult[i]) > 0) {
+					System.out.println("계산 결과는 : " + String.format("%.2f", result));
+				}
+				if (Integer.parseInt(strResult[i]) <= 0) {
+					System.out.println("계산 결과는 : " + Math.round(result));
+				}
+			}
+		}
 	}
 } // class
