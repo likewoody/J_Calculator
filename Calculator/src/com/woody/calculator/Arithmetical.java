@@ -1,6 +1,6 @@
-package com.calculator.base;
+package com.woody.calculator;
 
-public interface Arithmetic {
+public interface Arithmetical {
 	public double add(double num1, double num2);
 	public double sub(double num1, double num2);
 	public double mul(double num1, double num2);
