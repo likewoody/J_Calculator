@@ -13,31 +13,23 @@ public class Arithmetic implements CalculableMulDiv, CalculableAddSub, Arithmeti
 
 	private static final String EXIT_NUMBER = "0";
 	private static final String SHOW_HISTORY_NUMBER = "1";
-	
+
 	private Input input = new Input();
 	private Output output = new Output();
 
 	private List<String> userInputResult;
 	private Arrangement arrangement;
 	private Storable store;
-	
+
 	private double result = 0;
-	
+
 	public Arithmetic(Storable store) {
 		// TODO Auto-generated constructor stub
 		this.store = store;
 	}
-	
-
-//	@Override
-//	public void calculate() {
-//		// TODO Auto-generated method stub
-//		this.store = store;
-//		calculateMulDiv();
-//	}
 
 	@Override
-	public void calculateMulDiv(){
+	public void calculateMulDiv() {
 		// TODO Auto-generated method stub
 		boolean isFlag = true;
 		String regex = "^[0-9+\\-*/]+$";
@@ -55,7 +47,7 @@ public class Arithmetic implements CalculableMulDiv, CalculableAddSub, Arithmeti
 				output.printExitMessage();
 				break;
 			}
-			
+
 			if (userInput.equals(SHOW_HISTORY_NUMBER)) {
 				store.show();
 				continue;
@@ -111,7 +103,7 @@ public class Arithmetic implements CalculableMulDiv, CalculableAddSub, Arithmeti
 				continue;
 			}
 		}
-		
+
 		store.save(Double.toString(result));
 		output.printResult(result);
 
