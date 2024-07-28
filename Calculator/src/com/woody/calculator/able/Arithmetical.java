@@ -1,4 +1,4 @@
-package com.woody.calculator;
+package com.woody.calculator.able;
 
 public interface Arithmetical {
 	public double add(double num1, double num2);

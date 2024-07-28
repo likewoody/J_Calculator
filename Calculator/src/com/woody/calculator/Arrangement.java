@@ -1,40 +1,33 @@
 package com.woody.calculator;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Arrangement {
 
-	private List<String> userInputResult = new ArrayList<String>();
-	protected boolean isInt;
+	private List<String> userInputResult;
+	protected boolean isInt = true;
 	String gatheredNumbers = "";
 
-	public Arrangement() {}
+	public Arrangement(List<String> userInputResult) {
+		this.userInputResult = userInputResult;
+	}
 
-	public List<String> arrangeInputLine(String userInput) {
+	public void arrangeNumbers(String userInput) {
 		String[] splitedUserInput = userInput.split("");
 
-		try {
-			IntStream.range(0, splitedUserInput.length).forEach(i -> {
-				if (!Character.isDigit(splitedUserInput[i].charAt(0))) {
-					userInputResult.add(gatheredNumbers);
-					userInputResult.add(splitedUserInput[i]);
-					gatheredNumbers = "";
-				} else {
-					gatheredNumbers += splitedUserInput[i];
-				}
-			});
-			if (!gatheredNumbers.isEmpty()) {
+		IntStream.range(0, splitedUserInput.length).forEach(i -> {
+			if (!Character.isDigit(splitedUserInput[i].charAt(0))) {
 				userInputResult.add(gatheredNumbers);
+				userInputResult.add(splitedUserInput[i]);
+				gatheredNumbers = "";
+			} else {
+				gatheredNumbers += splitedUserInput[i];
 			}
-			isInt = true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			isInt = false;
+		});
+		if (!gatheredNumbers.isEmpty()) {
+			userInputResult.add(gatheredNumbers);
 		}
-		return userInputResult;
 	}
 
 	public void arrangeIndex(List<String> userInputResult, int index, Double result) {
