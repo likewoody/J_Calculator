@@ -1,19 +1,19 @@
 package com.woody.calculator;
 
+import com.woody.calculator.able.Calculable;
 import com.woody.calculator.able.Storable;
 
-public class Calculator{
+public class Calculator implements Calculable{
 	
-	private Arithmetic arithmetic;
 	private Storable store;
 	
-
-	public Calculator(Arithmetic arithmetic, Storable store) {
-		this.arithmetic = arithmetic;
+	public Calculator(Storable store) {
 		this.store = store;
 	}
 	
+	@Override
 	public void calculate() {
-		arithmetic.calculate(store);
+		Arithmetic arithmetic = new Arithmetic(store);
+		arithmetic.calculateMulDiv();
 	}
 }

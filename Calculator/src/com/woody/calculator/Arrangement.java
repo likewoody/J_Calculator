@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 public class Arrangement {
 
 	private List<String> userInputResult;
+	
 	protected boolean isInt = true;
 	String gatheredNumbers = "";
 

@@ -9,7 +9,7 @@ import com.woody.calculator.able.CalculableAddSub;
 import com.woody.calculator.able.CalculableMulDiv;
 import com.woody.calculator.able.Storable;
 
-public class Arithmetic implements Calculable, CalculableMulDiv, CalculableAddSub, Arithmetical {
+public class Arithmetic implements CalculableMulDiv, CalculableAddSub, Arithmetical {
 
 	private static final String EXIT_NUMBER = "0";
 	private static final String SHOW_HISTORY_NUMBER = "1";
@@ -23,21 +23,21 @@ public class Arithmetic implements Calculable, CalculableMulDiv, CalculableAddSu
 	
 	private double result = 0;
 	
-//	public Arithmetic(String userInput, Storable store) {
-//		// TODO Auto-generated constructor stub
-//		this.userInput = userInput;
+	public Arithmetic(Storable store) {
+		// TODO Auto-generated constructor stub
+		this.store = store;
+	}
+	
+
+//	@Override
+//	public void calculate() {
+//		// TODO Auto-generated method stub
 //		this.store = store;
+//		calculateMulDiv();
 //	}
 
 	@Override
-	public void calculate(Storable store) {
-		// TODO Auto-generated method stub
-		this.store = store;
-		calculateMulDiv();
-	}
-
-	@Override
-	public void calculateMulDiv() {
+	public void calculateMulDiv(){
 		// TODO Auto-generated method stub
 		boolean isFlag = true;
 		String regex = "^[0-9+\\-*/]+$";
